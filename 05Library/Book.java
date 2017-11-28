@@ -13,15 +13,15 @@ public class Book{
 	this.ISBN=ISBN;
     }
 
-    public String setAuthor(String poo){
+    public void setAuthor(String poo){
 	author = poo;
     }
 
-    public String setTitle(String poo){
+    public void setTitle(String poo){
 	title = poo;
     }
 
-    public String setISBN(String poo){
+    public void setISBN(String poo){
 	ISBN = poo;
     }
     

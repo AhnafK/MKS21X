@@ -1,0 +1,93 @@
+Github practice + Some actual java!
+
+A note on interfaces:
+"Implementing an interface allows a class to become more formal about the behavior it promises to provide. Interfaces form a contract between the class and the outside world, and this contract is enforced at build time by the compiler. If your class claims to implement an interface, all methods defined by that interface must appear in its source code before the class will successfully compile."
+
+"When you define a new interface, you are defining a new reference data type. You can use interface names anywhere you can use any other data type name. If you define a reference variable whose type is an interface, any object you assign to it must be an instance of a class that implements the interface."
+
+
+1. Write the following in your MKS21X repo.
+2. Place all files in a directory in the repo: 
+    MKS21X/05Library/
+
+You must COMMIT FREQUENTLY WITH GOOD MESSAGES. Basically: 
+add files and commit your changes after you meet with ANY degree of success!
+
+?05 or 04?
+
+Built in to java:
+interface Comparable<T>
+   - CompareTo(T o)
+
+3. You write:
+Class Book
+
+Book models information common to all books. Any book has
+
+    fields
+        an author
+        a title
+        an ISBN or International Standard Book Number that provides a unique number used by publishers and book stores. (String)
+    constructors and methods
+        a null constructor 
+        a constructor using 3 parameters for an author, title, and ISBN number
+        getters and setters
+        toString should provide a string of the field data in a format: title, author, ISBN
+
+Within a Book class and its subclasses, these fields might be used directly, but processing by other classes and objects should be done via getters and setters.
+
+4. You write: 
+abstract Class LibraryBook extends Book implements Comparable<LibraryBook>
+
+Class LibraryBook models information common for library books. In addition to author, title, and ISBN, library books have call numbers, and library books are stored on the shelves in order by call number. Further, many library books may be able to circulate. In addition to fields and methods of books, any library book has
+
+    fields
+        String callNumber
+    constructors and methods
+        a constructor using 4 parameters for an author, title, ISBN number, and call number
+        getters and setters
+        abstract void checkout(String patron, String due)
+        abstract void returned()
+        abstract String circulationStatus()
+        compareTo allows comparison/ordering of library books by callNumber, following the format of Java's Comparable interface
+        toString from Book is augmented with a circulation status and call number
+
+
+5. You write:
+Class ReferenceBook extends LibraryBook
+
+Reference books are housed in a specific collection (e.g., the Iowa Room, Burling, or Science), and reference books do not circulate.
+
+In addition to fields and methods of library books, a reference book has
+
+    fields
+        String collection
+    constructors and methods
+        a constructor using 5 parameters for an author, title, ISBN number, call number, and collection
+        getters and setters
+        void checkout is not allowed for reference books, so the method should print that the patron "cannot check out a reference book".  (This should have been designed as an exception.)
+        void returned is not allowed, and should print "reference book could not have been checked out -- return impossible". (This should have been designed as an exception.)
+        String circulationStatus should return "non-circulating reference book".
+        String toString from LibraryBook should be augmented with the collection information
+
+With checkout, returned, and circulationStatus implemented for LibraryBook, this is a fully-implemented class.
+
+6. You write:
+Class CirculatingBook extends LibraryBook
+
+CirculatingBook models books that can circulate. When checked out, information is stored about the patron who borrowed the book and when it is due. In addition to fields and methods of library books, a circulating book has:
+
+    fields
+        currentHolder (patron, if any, who checked out the book)
+        dueDate (when book should be returned)
+    constructors and methods
+        a constructor using 4 parameters for an author, title, ISBN number, and call number. When constructed, currentHolder and dueDate should be null.
+        getters and setters
+        void checkout handles processing when a book is checked out, storing the patron's name and the date the book is due in the fields.
+        void returned handles process when a book is returned (currentHolder and dueDate are set to null).
+        String circulationStatus should return the currentHolder's name and due date if the book has been checked out; or "book available on shelves" if the book is available.
+        String toString from LibraryBook should be augmented with current holder and due date, if applicable.
+
+Although production-level software would include substantial error checking, the implementation for this lab may involve minimal error checking. That is, it is not necessary to check that the book has not been checked out when calling checkout or that the book has been checked out when calling returned.
+
+TEST IT ALL! (File attached)

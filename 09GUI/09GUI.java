@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.events.*;
 
-public class CF extends JFrame{
+public class CF extends JFrame implements ActionListener{
     private Container pane;
     private JCheckBox c;
     private JTtextField t;
@@ -20,5 +20,9 @@ public class CF extends JFrame{
 	pane.add(c);
 	pane.add(t);
     }
-      
+
+    public static void main(String[]args){
+	CF g = new CF();
+	g.setVisible(true);
+    }
 }

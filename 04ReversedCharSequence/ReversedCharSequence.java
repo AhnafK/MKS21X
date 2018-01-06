@@ -1,4 +1,4 @@
-public class ReversedCharSeq implements CharSequence{
+public class ReversedCharSequence implements CharSequence{
     String wgvbhjmn;
     
     public ReversedCharSeq(String chars){
